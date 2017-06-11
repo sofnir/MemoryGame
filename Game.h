@@ -2,6 +2,7 @@
 #include <stack>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Data.h"
 
 class GameState;
 
@@ -22,5 +23,6 @@ public:
 
 private:
 	std::stack<GameState*> states;
+	Data data;
 };
 

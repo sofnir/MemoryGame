@@ -3,7 +3,7 @@
 
 Game::Game() 
 {
-	window.create(sf::VideoMode(800, 600), "Template", sf::Style::Close);
+	window.create(sf::VideoMode(Config::windowSize.x, Config::windowSize.y), "Template", sf::Style::Close);
 	window.setFramerateLimit(60);
 }
 
