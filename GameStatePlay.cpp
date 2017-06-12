@@ -8,7 +8,8 @@ GameStatePlay::GameStatePlay(Game * game)
 
 void GameStatePlay::draw()
 {
-	game->window.clear(sf::Color::Black);
+	game->window.clear(sf::Color::White);
+	game->window.draw(board);
 	game->window.display();
 }
 
@@ -42,8 +43,11 @@ void GameStatePlay::handleInput()
 		case sf::Event::MouseButtonPressed:
 		{
 			if (event.mouseButton.button == sf::Mouse::Left)
-			{				
-				;
+			{								
+				if (board.discoverCard(game->mousePosition, logic))
+				{					
+					logic.update();
+				}
 			}
 		}
 		default: break;

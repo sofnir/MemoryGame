@@ -8,6 +8,7 @@ public:
 	~Data();
 
 	static sf::Font font;
+	static sf::Texture cardsTexture;
 };
 
 namespace Color
@@ -21,5 +22,5 @@ namespace Color
 
 namespace Config
 {
-	const sf::Vector2u windowSize(800, 600);
+	const sf::Vector2u windowSize(1200, 600);
 }
