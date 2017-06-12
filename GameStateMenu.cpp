@@ -18,20 +18,21 @@ void GameStateMenu::playGame()
 void GameStateMenu::createTitle()
 {
 	title.setString("Memory Game");
-	title.setFillColor(Color::Grey);
+	title.setFillColor(Color::Brown);
 	title.setCharacterSize(80);
 	title.setFont(Data::font);
-	title.setStyle(sf::Text::Bold);
 	title.setPosition(Config::windowSize.x / 2.0f - title.getGlobalBounds().width / 2.0f, 50.0f);
 }
 
 void GameStateMenu::createButtons()
 {
-	buttons[0] = TextButton("Play", Data::font, 60);
-	buttons[1] = TextButton("Exit", Data::font, 60);
+	buttons[0] = TextButton("Play", Data::font, 65);
+	buttons[1] = TextButton("Exit", Data::font, 65);
 
 	for (int i = 0; i < 2; i++)
 	{	
+		buttons[i].setFillColor(Color::Navy);
+		buttons[i].setHoverColor(Color::Brown);
 		buttons[i].setOrigin(buttons[i].getGlobalBounds().width / 2.0f, buttons[i].getGlobalBounds().height / 2.0f);
 		buttons[i].setPosition(Config::windowSize.x / 2.0, 280.0f + i * 120.0f);
 	}
@@ -40,6 +41,7 @@ void GameStateMenu::createButtons()
 void GameStateMenu::draw()
 {
 	game->window.clear(sf::Color::White);
+	game->window.draw(Data::background);
 	game->window.draw(title);
 	
 	for (auto & button : buttons)

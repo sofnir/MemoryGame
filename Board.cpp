@@ -26,8 +26,24 @@ Card * Board::getCard(const sf::Vector2f & mousePosition)
 		for (auto & card : row)
 		{
 			if (card.isHover(mousePosition) && card.isVisible())
-				return & card;
+				return &card;			
 		}
+
+	return nullptr;
+}
+
+void Board::reset()
+{
+	for (auto & row : cards)
+		for (auto & card : row)
+		{
+			card.setVisible(true);
+
+			if(!card.isCover())
+				card.changeState();
+		}
+
+	setRandomFaces();
 }
 
 void Board::createCards()
@@ -36,7 +52,7 @@ void Board::createCards()
 		for (int x = 0; x < 5; x++)
 		{
 			cards[y][x].setTexture(Data::cardsTexture);			
-			cards[y][x].setPosition(sf::Vector2f(100 + x * 115, 70 + y * 115));
+			cards[y][x].setPosition(sf::Vector2f(50 + x * 115, Config::windowSize.y - 565 + y * 115));
 		}
 
 	setRandomFaces();

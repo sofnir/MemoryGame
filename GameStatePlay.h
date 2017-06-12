@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include "Board.h"
 #include "Logic.h"
+#include "TextButton.h"
 
 class GameStatePlay : public GameState
 {
@@ -17,6 +18,8 @@ private:
 	Board board;
 	Logic logic;
 	sf::Text timer;
+	TextButton buttons[2];
 
 	void createTimer();
+	void createButtons();
 };

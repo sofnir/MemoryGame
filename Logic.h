@@ -15,6 +15,7 @@ public:
 	void setState(const gameStates & s) { state = s; }
 	void checkWaitingTime(const sf::Time & time);
 	void setCard(Card * card, const sf::Time & time);
+	void reset();
 
 private:
 	gameStates state = DISCOVERING;

@@ -12,7 +12,7 @@ Logic::~Logic()
 
 void Logic::checkWaitingTime(const sf::Time & time)
 {
-	if (state == WAITING && time.asSeconds() - waitingTime.asSeconds() > 0.5f)
+	if (state == WAITING && time.asSeconds() - waitingTime.asSeconds() > 0.3f)
 	{
 		if (compareCards())
 		{
@@ -35,18 +35,27 @@ void Logic::checkWaitingTime(const sf::Time & time)
 
 void Logic::setCard(Card * card, const sf::Time & time)
 {
-	if (firstCard == nullptr)
+	if (card != nullptr)
 	{
-		firstCard = card;
-		firstCard->changeState(); //discover face
-	}
-	else if (secondCard == nullptr)
-	{
-		secondCard = card;
-		secondCard->changeState();
-		waitingTime = time;
-		state = WAITING;		
+		if (firstCard == nullptr)
+		{
+			firstCard = card;
+			firstCard->changeState(); //discover face
+		}
+		else if (secondCard == nullptr && card != firstCard)
+		{
+			secondCard = card;
+			secondCard->changeState();
+			waitingTime = time;
+			state = WAITING;
+		}
 	}	
+}
+
+void Logic::reset()
+{
+	state = DISCOVERING;
+	pairsCount = 0;
 }
 
 bool Logic::compareCards()

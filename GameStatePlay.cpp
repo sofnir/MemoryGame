@@ -6,13 +6,19 @@ GameStatePlay::GameStatePlay(Game * game)
 	this->game = game;
 	game->clock.restart();
 	createTimer();
+	createButtons();
 }
 
 void GameStatePlay::draw()
 {
 	game->window.clear(sf::Color::White);
+	game->window.draw(Data::background);
 	game->window.draw(board);
 	game->window.draw(timer);
+
+	for (auto & button : buttons)
+		game->window.draw(button);
+
 	game->window.display();
 }
 
@@ -25,6 +31,9 @@ void GameStatePlay::update()
 		sf::Time time = game->clock.getElapsedTime();
 		timer.setString(std::to_string(time.asSeconds()));
 	}	
+
+	for (auto & button : buttons)
+		button.update(game->mousePosition);
 }
 
 void GameStatePlay::handleInput()
@@ -54,8 +63,18 @@ void GameStatePlay::handleInput()
 			if (event.mouseButton.button == sf::Mouse::Left)
 			{								
 				if (logic.canDiscover())
-				{					
-					logic.setCard(board.getCard(game->mousePosition), game->clock.getElapsedTime()); //discover card										
+					logic.setCard(board.getCard(game->mousePosition), game->clock.getElapsedTime()); //discover card	
+
+				if (buttons[0].isHover(game->mousePosition))
+				{
+					board.reset();
+					logic.reset();
+					game->clock.restart();
+				}
+				else if (buttons[1].isHover(game->mousePosition))
+				{
+					game->popState();
+					return;
 				}
 			}
 		}
@@ -69,9 +88,25 @@ void GameStatePlay::handleInput()
 void GameStatePlay::createTimer()
 {
 	timer.setFont(Data::font);
-	timer.setCharacterSize(40);
-	timer.setFillColor(sf::Color::Black);
-	timer.setString("0.00000");
-	timer.setStyle(sf::Text::Bold);
-	timer.setPosition(sf::Vector2f(880, 80));
+	timer.setCharacterSize(60);
+	timer.setFillColor(Color::Brown);
+	timer.setString("00.000000");
+	timer.setOrigin(timer.getGlobalBounds().width / 2.0f, timer.getGlobalBounds().height / 2.0f);
+	timer.setPosition(sf::Vector2f(Config::windowSize.x / 2.0f, 35));
+}
+
+void GameStatePlay::createButtons()
+{
+	buttons[0] = TextButton("Play again", Data::font, 55);
+	buttons[1] = TextButton("Back", Data::font, 55);
+
+	for (int i = 0; i < 2; i++)
+	{		
+		buttons[i].setFillColor(Color::Grey);
+		buttons[i].setHoverColor(Color::Brown);
+		buttons[i].setOrigin(sf::Vector2f(buttons[i].getGlobalBounds().width / 2.0f,
+			buttons[i].getGlobalBounds().height / 2.0f));
+		buttons[i].setPosition(sf::Vector2f(Config::windowSize.x / 4.0f + Config::windowSize.x / 2.0f * i,
+			Config::windowSize.y - 60.0f));
+	}
 }
