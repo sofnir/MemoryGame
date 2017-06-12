@@ -14,6 +14,7 @@ public:
 
 	sf::RenderWindow window;
 	sf::Vector2f mousePosition;
+	sf::Clock clock;
 
 	void pushState(GameState* state);
 	void popState();

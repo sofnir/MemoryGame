@@ -16,4 +16,7 @@ public:
 private:
 	Board board;
 	Logic logic;
+	sf::Text timer;
+
+	void createTimer();
 };

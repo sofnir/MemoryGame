@@ -4,18 +4,27 @@
 GameStatePlay::GameStatePlay(Game * game)
 {
 	this->game = game;
+	game->clock.restart();
+	createTimer();
 }
 
 void GameStatePlay::draw()
 {
 	game->window.clear(sf::Color::White);
 	game->window.draw(board);
+	game->window.draw(timer);
 	game->window.display();
 }
 
 void GameStatePlay::update()
 {
-	;
+	logic.checkWaitingTime(game->clock.getElapsedTime());	
+
+	if (logic.getState() != Logic::END_GAME)
+	{
+		sf::Time time = game->clock.getElapsedTime();
+		timer.setString(std::to_string(time.asSeconds()));
+	}	
 }
 
 void GameStatePlay::handleInput()
@@ -44,9 +53,9 @@ void GameStatePlay::handleInput()
 		{
 			if (event.mouseButton.button == sf::Mouse::Left)
 			{								
-				if (board.discoverCard(game->mousePosition, logic))
+				if (logic.canDiscover())
 				{					
-					logic.update();
+					logic.setCard(board.getCard(game->mousePosition), game->clock.getElapsedTime()); //discover card										
 				}
 			}
 		}
@@ -55,4 +64,14 @@ void GameStatePlay::handleInput()
 	}
 
 	return;
+}
+
+void GameStatePlay::createTimer()
+{
+	timer.setFont(Data::font);
+	timer.setCharacterSize(40);
+	timer.setFillColor(sf::Color::Black);
+	timer.setString("0.00000");
+	timer.setStyle(sf::Text::Bold);
+	timer.setPosition(sf::Vector2f(880, 80));
 }

@@ -10,7 +10,7 @@ public:
 	~Board();
 
 	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
-	bool discoverCard(const sf::Vector2f & mousePosition, const Logic & logic);
+	Card * getCard(const sf::Vector2f & mousePosition);
 
 private:
 	Card cards[4][5];

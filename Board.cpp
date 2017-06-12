@@ -14,22 +14,20 @@ void Board::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	for (auto & row : cards)
 		for (auto & card : row)
-			target.draw(card);
+		{
+			if(card.isVisible())
+				target.draw(card);
+		}			
 }
 
-bool Board::discoverCard(const sf::Vector2f & mousePosition, const Logic & logic)
+Card * Board::getCard(const sf::Vector2f & mousePosition)
 {
 	for (auto & row : cards)
 		for (auto & card : row)
 		{
-			if (card.isHover(mousePosition) && card.isCover() && logic.canDiscover())
-			{
-				card.changeState();
-				return true;
-			}
+			if (card.isHover(mousePosition) && card.isVisible())
+				return & card;
 		}
-
-	return false;
 }
 
 void Board::createCards()

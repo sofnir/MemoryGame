@@ -33,10 +33,10 @@ GameState* Game::peekState()
 }
 
 void Game::gameLoop()
-{
+{	
 	while (window.isOpen())
 	{				
-		mousePosition = sf::Vector2f(sf::Mouse::getPosition(window));
+		mousePosition = sf::Vector2f(sf::Mouse::getPosition(window));	
 
 		if (peekState() == nullptr) 
 			continue;
