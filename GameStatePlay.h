@@ -1,9 +1,10 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "GameState.h"
 #include "Board.h"
 #include "Logic.h"
 #include "TextButton.h"
+#include <SFML\Window\Event.hpp>
+#include <SFML\Graphics\Text.hpp>
 
 class GameStatePlay : public GameState
 {

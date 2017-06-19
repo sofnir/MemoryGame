@@ -1,7 +1,7 @@
 #pragma once
 #include <stack>
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#include <SFML\Graphics\RenderWindow.hpp>
+#include <SFML\Window\Mouse.hpp>
 #include "Data.h"
 
 class GameState;

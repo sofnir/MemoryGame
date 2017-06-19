@@ -1,6 +1,6 @@
 #pragma once
-#include "SFML\Graphics.hpp"
 #include "Card.h"
+#include <SFML\System\Time.hpp>
 
 class Logic
 {

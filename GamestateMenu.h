@@ -1,8 +1,9 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "GameState.h"
 #include "TextButton.h"
 #include "Data.h"
+#include <SFML\Graphics\Text.hpp>
+#include <SFML\Window\Event.hpp>
 
 class GameStateMenu : public GameState
 {

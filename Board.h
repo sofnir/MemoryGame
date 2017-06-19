@@ -2,7 +2,8 @@
 #include "Card.h"
 #include "Data.h"
 #include "Logic.h" 
- 
+#include <SFML\Graphics\RenderTarget.hpp> 
+
 class Board : public sf::Drawable 
 {
 public:

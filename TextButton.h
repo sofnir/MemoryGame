@@ -1,6 +1,6 @@
 #pragma once
-#include <SFML\Graphics.hpp>
 #include "Data.h"
+#include <SFML\Graphics\Text.hpp>
 
 class TextButton : public sf::Text
 {

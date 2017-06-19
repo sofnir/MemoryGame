@@ -1,5 +1,6 @@
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML\Graphics\Font.hpp>
+#include <SFML\Graphics\Sprite.hpp>
 
 class Data
 {
