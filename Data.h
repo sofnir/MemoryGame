@@ -5,7 +5,6 @@ class Data
 {
 public:
 	Data();
-	~Data();
 
 	static sf::Font font;
 	static sf::Texture cardsTexture;

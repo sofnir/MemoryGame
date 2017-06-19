@@ -13,11 +13,6 @@ TextButton::TextButton(const sf::String & string, const sf::Font & font, unsigne
 	;
 }
 
-TextButton::~TextButton()
-{
-	;
-}
-
 void TextButton::update(const sf::Vector2f & mousePosition)
 {
 	if (getGlobalBounds().contains(mousePosition))

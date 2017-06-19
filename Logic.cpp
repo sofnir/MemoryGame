@@ -5,14 +5,9 @@ Logic::Logic()
 	;
 }
 
-Logic::~Logic()
-{
-	;
-}
-
 void Logic::checkWaitingTime(const sf::Time & time)
 {
-	if (state == WAITING && time.asSeconds() - waitingTime.asSeconds() > 0.3f)
+	if (state == gameStates::WAITING && time.asSeconds() - waitingTime.asSeconds() > 0.3f)
 	{
 		if (compareCards())
 		{
@@ -28,8 +23,7 @@ void Logic::checkWaitingTime(const sf::Time & time)
 
 		firstCard = nullptr;
 		secondCard = nullptr;
-
-		state = (pairsCount == 10) ? END_GAME : DISCOVERING;					
+		state = (pairsCount == 10) ? gameStates::END_GAME : gameStates::DISCOVERING;
 	}
 }
 
@@ -47,14 +41,14 @@ void Logic::setCard(Card * card, const sf::Time & time)
 			secondCard = card;
 			secondCard->changeState();
 			waitingTime = time;
-			state = WAITING;
+			state = gameStates::WAITING;
 		}
 	}	
 }
 
 void Logic::reset()
 {
-	state = DISCOVERING;
+	state = gameStates::DISCOVERING;
 	pairsCount = 0;
 }
 

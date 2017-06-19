@@ -12,11 +12,6 @@ Data::Data()
 	createBackground();
 }
 
-Data::~Data()
-{
-	;
-}
-
 void Data::createBackground()
 {	
 	backgroundTexture.setSmooth(true);

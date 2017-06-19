@@ -10,9 +10,9 @@ class GameStatePlay : public GameState
 public:
 	GameStatePlay(Game * game);
 
-	virtual void draw() override;
-	virtual void update() override;
-	virtual void handleInput() override;
+	void draw() override;
+	void update() override;
+	void handleInput() override;
 
 private:
 	Board board;

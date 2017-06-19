@@ -7,9 +7,8 @@ class Board : public sf::Drawable
 {
 public:
 	Board();
-	~Board();
 
-	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
+	void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
 	Card * getCard(const sf::Vector2f & mousePosition);
 	void reset();
 

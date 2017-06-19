@@ -10,7 +10,9 @@ Game::Game()
 Game::~Game()
 {
 	while (!states.empty())
+	{
 		popState();
+	}		
 }
 
 void Game::pushState(GameState* state)
@@ -26,10 +28,14 @@ void Game::popState()
 
 GameState* Game::peekState()
 {
-	if (states.empty()) 
+	if (states.empty())
+	{
 		return nullptr;
-	else 
+	}		
+	else
+	{
 		return states.top();
+	}		
 }
 
 void Game::gameLoop()
@@ -38,8 +44,10 @@ void Game::gameLoop()
 	{				
 		mousePosition = sf::Vector2f(sf::Mouse::getPosition(window));	
 
-		if (peekState() == nullptr) 
+		if (peekState() == nullptr)
+		{
 			continue;
+		}			
 
 		peekState()->handleInput();
 		peekState()->update();		

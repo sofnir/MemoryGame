@@ -5,29 +5,32 @@ Board::Board()
 	createCards();
 }
 
-Board::~Board()
-{
-	;
-}
-
 void Board::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	for (auto & row : cards)
+	{
 		for (auto & card : row)
 		{
-			if(card.isVisible())
+			if (card.isVisible())
+			{
 				target.draw(card);
-		}			
+			}				
+		}
+	}
 }
 
 Card * Board::getCard(const sf::Vector2f & mousePosition)
 {
 	for (auto & row : cards)
+	{
 		for (auto & card : row)
 		{
 			if (card.isHover(mousePosition) && card.isVisible())
-				return &card;			
+			{
+				return &card;
+			}				
 		}
+	}
 
 	return nullptr;
 }
@@ -35,13 +38,17 @@ Card * Board::getCard(const sf::Vector2f & mousePosition)
 void Board::reset()
 {
 	for (auto & row : cards)
+	{
 		for (auto & card : row)
 		{
 			card.setVisible(true);
 
-			if(!card.isCover())
+			if (!card.isCover())
+			{
 				card.changeState();
+			}				
 		}
+	}
 
 	setRandomFaces();
 }
@@ -49,11 +56,13 @@ void Board::reset()
 void Board::createCards()
 {
 	for (int y = 0; y < 4; y++)
+	{
 		for (int x = 0; x < 5; x++)
 		{
-			cards[y][x].setTexture(Data::cardsTexture);			
+			cards[y][x].setTexture(Data::cardsTexture);
 			cards[y][x].setPosition(sf::Vector2f(50 + x * 115, Config::windowSize.y - 565 + y * 115));
 		}
+	}		
 
 	setRandomFaces();
 }
@@ -75,7 +84,10 @@ void Board::setRandomFaces()
 				cards[i][j].setFaceRect(sf::IntRect(0, number * 100, 100, 100));
 				tab_check[number - 1]++;
 			}
-			else j--;
+			else
+			{
+				j--;
+			}
 		}
 	}
 }

@@ -5,7 +5,6 @@ class Card : public sf::Sprite
 {
 public:
 	Card(const sf::IntRect & faceRect = sf::IntRect(0, 100, 100, 100));
-	~Card();
 
 	void setFaceRect(const sf::IntRect & f) { face = f; }
 	void changeState(); //cover / discover

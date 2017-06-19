@@ -7,7 +7,6 @@ class TextButton : public sf::Text
 public:
 	TextButton();
 	TextButton(const sf::String &string, const sf::Font &font, unsigned int characterSize = 30);
-	~TextButton();
 
 	void update(const sf::Vector2f &mousePosition);
 	bool isHover(const sf::Vector2f &mousePosition) const;
